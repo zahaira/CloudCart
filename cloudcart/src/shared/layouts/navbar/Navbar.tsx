@@ -12,29 +12,23 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import SearchBar from "./SearchBar";
 import NotificationIcons from "./NotificationIcons";
 import MobileMenu from "./MobileMenu";
-
-import ShopDrawer from "@/shared/components/Shop-Drawer/shopDrawer";
+import CategoryDrawer from "@/shared/components/category-Drawer/CategoryDrawer";
+import Link from "next/link";
 
 interface NavbarProps {
-  title?: string;
   mailCount?: number;
   notificationCount?: number;
-  onMenuClick?: () => void;
   onSearch?: (value: string) => void;
 }
 
 export default function Navbar({
-  title = "MUI",
   mailCount = 4,
   notificationCount = 17,
-  onMenuClick,
   onSearch,
 }: NavbarProps) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -55,19 +49,8 @@ export default function Navbar({
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClick = () => {
-    if (onMenuClick) {
-      onMenuClick();
-    }
   };
 
   const menuId = "primary-search-account-menu";
@@ -93,35 +76,36 @@ export default function Navbar({
           >
             <MenuIcon />
           </IconButton>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              flexShrink: 0,
-            }}
-          >
+          <Link href="/">
             <Box
-              component="img"
-              src="/logo.png"
-              alt="TechMarket"
               sx={{
-                height: { xs: 30, sm: 40 },
-                width: "auto",
-              }}
-            />
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{
-                display: { xs: "none", sm: "inline" },
-                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexShrink: 0,
               }}
             >
-              TechMarket
-            </Typography>
-          </Box>
+              <Box
+                component="img"
+                src="/logo.png"
+                alt="TechMarket"
+                sx={{
+                  height: { xs: 30, sm: 40 },
+                  width: "auto",
+                }}
+              />
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  display: { xs: "none", sm: "inline" },
+                  fontWeight: "bold",
+                }}
+              >
+                TechMarket
+              </Typography>
+            </Box>
+          </Link>
           <SearchBar onSearch={onSearch} />
 
           <Box sx={{ flexGrow: 1 }} />
@@ -151,7 +135,7 @@ export default function Navbar({
         </Toolbar>
       </AppBar>
 
-      <ShopDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <CategoryDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
       {/* Mobile Menu */}
       <MobileMenu
