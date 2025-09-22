@@ -9,23 +9,23 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
-import SearchBar from "./SearchBar";
-import NotificationIcons from "./NotificationIcons";
-import MobileMenu from "./MobileMenu";
 import CategoryDrawer from "@/shared/components/category-Drawer/CategoryDrawer";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
+import MobileMenu from "./MobileMenu";
+import NotificationIcons from "./NotificationIcons";
 
-interface NavbarProps {
+interface HeaderProps {
   mailCount?: number;
   notificationCount?: number;
   onSearch?: (value: string) => void;
 }
 
-export default function Navbar({
+export default function Header({
   mailCount = 4,
   notificationCount = 17,
   onSearch,
-}: NavbarProps) {
+}: HeaderProps) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
 
@@ -59,6 +59,7 @@ export default function Navbar({
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
+        position="fixed"
         sx={{
           backgroundColor: "#fff",
           color: "#041f4c",
