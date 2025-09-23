@@ -97,7 +97,17 @@ export default function CategoryDrawer({ open, onClose }: CategoryDrawerProps) {
                   key={category.name}
                   selected={selectedCategory === category.name}
                   onClick={() => setSelectedCategory(category.name)}
-                  sx={{ flexShrink: 0, minWidth: 100 }}
+                  sx={{
+                    flexShrink: 0,
+                    minWidth: 100,
+                    "&.Mui-selected": {
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.primary.contrastText,
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.light,
+                      },
+                    },
+                  }}
                 >
                   <ListItemText primary={category.name} />
                 </ListItemButton>
@@ -106,9 +116,6 @@ export default function CategoryDrawer({ open, onClose }: CategoryDrawerProps) {
             <Box sx={{ flexGrow: 1, p: 2, overflowY: "auto" }}>
               {selectedCategory ? (
                 <>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {selectedCategory}
-                  </Typography>
                   <List>
                     {selectedSubcategories.map((sub) => (
                       <ListItemButton key={sub.id}>
@@ -134,6 +141,20 @@ export default function CategoryDrawer({ open, onClose }: CategoryDrawerProps) {
                   key={category.name}
                   selected={selectedCategory === category.name}
                   onClick={() => setSelectedCategory(category.name)}
+                  sx={{
+                    "&.Mui-selected": {
+                      backgroundColor: theme.palette.secondary.light,
+                      color: theme.palette.primary.main,
+                      "&:hover": {
+                        backgroundColor: theme.palette.common.white,
+                        color: theme.palette.secondary.dark,
+                      },
+                    },
+                    "&:hover": {
+                      backgroundColor: theme.palette.common.white,
+                      color: theme.palette.secondary.dark,
+                    },
+                  }}
                 >
                   <ListItemText primary={category.name} />
                 </ListItemButton>
@@ -146,7 +167,15 @@ export default function CategoryDrawer({ open, onClose }: CategoryDrawerProps) {
                 <>
                   <List>
                     {selectedSubcategories.map((sub) => (
-                      <ListItemButton key={sub.id}>
+                      <ListItemButton
+                        key={sub.id}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: theme.palette.common.white,
+                            color: theme.palette.secondary.dark,
+                          },
+                        }}
+                      >
                         <ListItemText primary={sub.name} />
                       </ListItemButton>
                     ))}

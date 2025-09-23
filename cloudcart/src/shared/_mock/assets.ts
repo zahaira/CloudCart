@@ -419,3 +419,42 @@ export const _descriptions = [
   `Modi hic asperiores ab cumque quam est aut. Voluptas atque quos molestias. Ut excepturi distinctio ipsam aspernatur sit.`,
   `Sunt totam facilis. Quam commodi voluptatem veniam. Tempora deleniti itaque fugit nihil voluptas.`,
 ];
+
+export const _smartphoneImages = [
+  "https://images.pexels.com/photos/30909359/pexels-photo-30909359.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/14979021/pexels-photo-14979021.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/14979015/pexels-photo-14979015.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/7856656/pexels-photo-7856656.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/17077380/pexels-photo-17077380.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/15378959/pexels-photo-15378959.png?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/12123392/pexels-photo-12123392.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/12123390/pexels-photo-12123390.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/12123389/pexels-photo-12123389.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1042143/pexels-photo-1042143.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/969462/pexels-photo-969462.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400",
+];
+
+export const _pcImages = [
+  "https://images.pexels.com/photos/2473183/pexels-photo-2473183.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/2148217/pexels-photo-2148217.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/7670738/pexels-photo-7670738.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/18104/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/5202961/pexels-photo-5202961.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/10948188/pexels-photo-10948188.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&w=400",
+];
+
+export const _accessoriesImages = [
+  "https://images.pexels.com/photos/28920288/pexels-photo-28920288.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/9058878/pexels-photo-9058878.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/9058883/pexels-photo-9058883.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/14935011/pexels-photo-14935011.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/4219862/pexels-photo-4219862.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/30909359/pexels-photo-30909359.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",
+];

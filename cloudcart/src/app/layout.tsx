@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/shared/theme/theme-provider";
-import Navbar from "@/shared/layouts/navbar/Navbar";
+import Header from "@/shared/layouts/header/Header";
+import Footer from "@/shared/layouts/footer/Footer";
 
 export const metadata: Metadata = {
   title: "TechMarket - Trouvez votre prochain smartphone ou ordinateur",
@@ -58,8 +59,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <Header />
+          <main style={{ paddingTop: "80px" }}>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

@@ -16,6 +16,9 @@ import {
   _firstNames,
   _descriptions,
   _phoneNumbers,
+  _smartphoneImages,
+  _pcImages,
+  _accessoriesImages,
 } from "./assets";
 
 // ----------------------------------------------------------------------
@@ -42,6 +45,15 @@ export const _mock = {
     nativeS: (index: number) => _nativeS[index],
     nativeM: (index: number) => _nativeM[index],
     nativeL: (index: number) => _nativeL[index],
+    range: (min: number, max: number): number => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+  },
+  // Image
+  image: {
+    smartphone: (index: number) => _smartphoneImages[index],
+    pc: (index: number) => _pcImages[index],
+    accessories: (index: number) => _accessoriesImages[index],
   },
 };
 
