@@ -1,11 +1,21 @@
+import { ProductDetailsView } from "@/shared/section/product/view/product-details-view";
+import { getProductById } from "@/shared/services/productService";
 import React from "react";
 
-interface props {
+interface Props {
   params: { id: string };
 }
-const pages = ({ params }: props) => {
-  const { id } = params;
-  return <div>{id}</div>;
+
+const ProductPage = async ({ params }: Props) => {
+  const { id } = await params;
+
+  const product = await getProductById(id);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
+  return <ProductDetailsView product={product} />;
 };
 
-export default pages;
+export default ProductPage;

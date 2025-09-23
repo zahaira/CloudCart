@@ -11,8 +11,9 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.2",
-    "@mui/material": "^7.3.2",
+    "@mui/icons-material": "^5.16.5",
+    "@mui/material": "^5.17.1",
+    "@mui/material-nextjs": "^5.15.11",
     "dayjs": "^1.11.18",
     "next": "15.5.3",
     "react": "19.1.0",
@@ -23,8 +24,16 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-lazy-load-image-component": "^1.6.4",
+    "embla-carousel": "^8.1.5",
+    "embla-carousel-auto-height": "^8.1.5",
+    "embla-carousel-auto-scroll": "^8.1.5",
+    "embla-carousel-autoplay": "^8.1.5",
+    "embla-carousel-react": "^8.1.5",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
-    "typescript": "^5"
+    "react-lazy-load-image-component": "^1.6.0",
+    "typescript": "^5",
+    "@iconify/react": "^6.0.2"
   }
 }

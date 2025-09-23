@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Box } from "@mui/material";
-import Hero from "./hero";
-import FeaturedProducts from "./FeaturedProducts";
+import Hero from "./component/hero";
+import FeaturedProducts from "./component/FeaturedProducts";
 
 const HomePage = () => {
   const handleShopNowClick = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
   };
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, pt: { xs: 7, sm: 8 } }}>
+    <Box component="main" sx={{ flexGrow: 1 }}>
       <Hero onShopNowClick={handleShopNowClick} />
       <FeaturedProducts />
     </Box>
