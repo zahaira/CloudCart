@@ -3,7 +3,7 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { featuredProducts } from "@/shared/_mock/_featuredProduct";
-import ProductCard from "../../product/components/ProductCard";
+import ProductCard from "../../product/ProductCard";
 
 const FeaturedProducts: React.FC = () => {
   return (
