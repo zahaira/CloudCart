@@ -1,4 +1,5 @@
 import { Product } from "@/shared/types/product";
+import { fCurrency } from "@/utils/format-number";
 import {
   Box,
   Button,
@@ -71,13 +72,42 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {product.name}
             </Link>
           </Typography>
-          <Typography
-            variant="h5"
-            color="primary"
-            sx={{ fontWeight: 700, mb: 2 }}
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              typography: "h6",
+            }}
           >
-            ${product.price}
-          </Typography>
+            {/* Original price, muted and line-through */}
+            {product.price && product.priceSale && (
+              <Box
+                component="span"
+                sx={{
+                  color: "text.disabled",
+                  textDecoration: "line-through",
+                  fontSize: "0.9rem",
+                }}
+              >
+                {fCurrency(product.price)}
+              </Box>
+            )}
+
+            {/* Current selling price */}
+            <Box
+              component="span"
+              sx={{
+                color: product.priceSale ? "error.main" : "text.primary",
+                fontWeight: 700,
+                fontSize: "1.1rem",
+              }}
+            >
+              {fCurrency(product.priceSale ?? product.price)}
+            </Box>
+          </Box>
+
           <Button
             variant="contained"
             fullWidth
