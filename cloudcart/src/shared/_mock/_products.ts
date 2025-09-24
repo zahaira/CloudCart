@@ -2,6 +2,11 @@ import type { Product, Review } from "../types/product";
 import { _mock } from "./_mock";
 import { _mockCategories } from "./_categories";
 
+export const PRODUCT_STOCK_OPTIONS = [
+  { value: "in stock", label: "In stock" },
+  { value: "out of stock", label: "Out of stock" },
+];
+
 const mockProductNames: Record<string, string[]> = {
   "Mobile Phones": [
     "iPhone 15 Pro",
@@ -69,34 +74,44 @@ const mockProductNames: Record<string, string[]> = {
     "Ring Video Doorbell 4",
   ],
 };
-// Helper to get a category & subcategory based on index
-const getCategoryByIndex = (
-  index: number
-): { category: string; subcategory: string } => {
+
+// Helpers
+const getCategoryByIndex = (index: number) => {
   const activeCategories = _mockCategories.filter((c) => c.isActive);
   const cat = activeCategories[index % activeCategories.length];
   const sub = cat.subcategories[index % cat.subcategories.length];
   return { category: cat.name, subcategory: sub.name };
 };
 
-// Generate mock reviews deterministically
 const generateReviews = (count: number, startIndex = 0): Review[] =>
   Array.from({ length: count }).map((_, i) => ({
     id: `review-${startIndex + i + 1}`,
     userId: `user-${_mock.id(startIndex + i)}`,
-    user: _mock.fullName(startIndex + i),
+    userName: _mock.fullName(startIndex + i),
     comment: _mock.sentence(startIndex + i),
     rating: _mock.number.range(1, 5),
+    isPurchased: true,
     date: _mock.time(startIndex + i),
   }));
 
-// Helper to get a product name deterministically
 const getProductName = (category: string, index: number): string => {
   const names = mockProductNames[category] || ["Product"];
   return names[index % names.length];
 };
 
-// Helper to get images deterministically
+const generateStarRatings = (reviews: Review[]) => {
+  const starCounts: Record<number, number> = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+  reviews.forEach((r) => {
+    starCounts[r.rating] = (starCounts[r.rating] || 0) + 1;
+  });
+  return (Object.keys(starCounts) as unknown as number[])
+    .sort((a, b) => b - a)
+    .map((star) => ({
+      star: star as 1 | 2 | 3 | 4 | 5,
+      reviewCount: starCounts[star] || 0,
+    }));
+};
+
 const getImagesForCategory = (category: string, index: number): string[] => {
   const totalImages = {
     smartphone: 12,
@@ -132,35 +147,33 @@ const getImagesForCategory = (category: string, index: number): string[] => {
   }
 };
 
-// Generate deterministic mock products
+// Generate mock products
 export const _mockProducts: Product[] = Array.from({ length: 20 }).map(
   (_, i) => {
     const { category, subcategory } = getCategoryByIndex(i);
 
-    const pointsFort =
-      category === "Computers" || category === "Gaming"
-        ? {
-            RAM: `${8 + (i % 4) * 8}GB`,
-            SSD: `${256 + (i % 4) * 256}GB`,
-            CPU: "Intel i7",
-          }
-        : undefined;
+    // Decide stock coherently
+    const isOutOfStock = i % 5 === 0; // every 5th product is out of stock
+    const inventoryType = isOutOfStock
+      ? PRODUCT_STOCK_OPTIONS[1].value
+      : PRODUCT_STOCK_OPTIONS[0].value;
+    const stock = isOutOfStock ? 0 : 5 + (i % 40);
 
-    let caracteristiques: Record<string, string | number> = {
+    let specifications: Record<string, string | number> = {
       weight: `${1 + (i % 5)}kg`,
     };
 
     if (category === "Computers" || category === "Gaming") {
-      caracteristiques = {
-        ...caracteristiques,
+      specifications = {
+        ...specifications,
         "Screen Size": `${13 + (i % 5)} inch`,
         Resolution: `${1080 + (i % 3) * 360}p`,
         "Processor Model": "Intel i7-12700H",
         "Hard Drive": `${256 + (i % 4) * 256}GB`,
       };
     } else if (category === "Mobile Phones" || category === "Tablets") {
-      caracteristiques = {
-        ...caracteristiques,
+      specifications = {
+        ...specifications,
         "Screen Size": `${5 + (i % 8)} inch`,
         Resolution: `${720 + (i % 3) * 360}p`,
         Storage: `${32 + (i % 16) * 32}GB`,
@@ -168,41 +181,55 @@ export const _mockProducts: Product[] = Array.from({ length: 20 }).map(
         "Processor Model": "Snapdragon 8 Gen 3",
       };
     } else if (category === "Audio & Video") {
-      caracteristiques = {
-        ...caracteristiques,
+      specifications = {
+        ...specifications,
         Power: `${5 + (i % 10) * 10}W`,
         "Battery Life": `${2 + (i % 12)}h`,
       };
     } else if (category === "Smart Home") {
-      caracteristiques = {
-        ...caracteristiques,
+      specifications = {
+        ...specifications,
         Connectivity: "WiFi/Bluetooth",
         Power: `${5 + (i % 10) * 5}W`,
       };
     }
-
     const images = getImagesForCategory(category, i);
-    const avis = generateReviews(i % 5, i * 5);
-    const rating = avis.length
-      ? Number(
-          (avis.reduce((sum, r) => sum + r.rating, 0) / avis.length).toFixed(1)
-        )
-      : undefined;
+    const reviews = generateReviews(i % 5, i * 5);
+    const rating =
+      reviews.length > 0
+        ? Number(
+            (
+              reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+            ).toFixed(1)
+          )
+        : undefined;
+
+    const starRatings = generateStarRatings(reviews);
 
     return {
       id: `prod-${i + 1}`,
       name: getProductName(category, i),
       price: 50 + (i % 20) * 100,
+      priceSale: i % 4 === 0 ? 40 + (i % 20) * 90 : null,
       category,
       subcategory,
+      tags: ["mock", "sample"],
       description: _mock.sentence(i),
-      pointsFort,
-      caracteristiques,
+      subDescription: _mock.sentence(i),
+      specifications,
+      coverUrl: images[0],
       images,
-      stock: 10 + (i % 40),
       rating,
-      avis,
-      isFeatured: i % 3 === 0,
+      stock,
+      totalSold: isOutOfStock ? 0 : 2 + (i % 40),
+      ratings: starRatings,
+      totalRatings: reviews.length,
+      totalReviews: reviews.length,
+      createdAt: _mock.time(i),
+      inventoryType,
+      reviews,
+      saleLabel: { enabled: i % 3 === 0, content: "-20% OFF" },
+      isFeatured: i % 2 === 0,
     };
   }
 );
